@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 const Home = () => {
+  axios.defaults.withCredentials = true;
   const login = () => {
-    axios.defaults.withCredentials = true;
     axios.get("http://localhost:8000/sanctum/csrf-cookie").then((res) => {
       console.log(res);
       axios
-        .post("http://localhost:8000/login", {
+        .post("http://localhost:8000/api/login", {
           email: "admin@gmail.com",
           password: "password",
         })
@@ -16,9 +16,8 @@ const Home = () => {
     });
   };
   const check = () => {
-    axios.defaults.withCredentials = true;
     axios.get("http://localhost:8000/api/check").then((res) => {
-      console.log(res);
+      console.log(res.data);
     });
   };
   return (

@@ -22,3 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/check', function () {
     return response()->json(Auth::check());
 });
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return response()->json(true);
+    } else {
+        return response()->json(false);
+    }
+});
