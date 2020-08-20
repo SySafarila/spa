@@ -1,21 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/Context";
-import axios from "axios";
-import { api } from "../api/config";
 
 const Nav = () => {
-  axios.defaults.withCredentials = true;
   const [collapse, setCollapse] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
-  useEffect(() => {
-    axios.get(`${api}/check`).then((res) => {
-      console.log(res.data);
-      if (res.data === true) {
-        setAuth(true);
-      }
-    });
-  });
   const collapsing = () => {
     setCollapse(!collapse);
   };
@@ -39,15 +28,25 @@ const Nav = () => {
       >
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <NavLink className="nav-link" activeClassName="active" to="/">
               Home
-            </Link>
+            </NavLink>
           </li>
         </ul>
-        <ul className="navbar-nav">
-          {auth === true ? (
-            ""
-          ) : (
+        {auth ? (
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/profile"
+                activeClassName="active"
+              >
+                Profile
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
+          <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink
                 className="nav-link"
@@ -57,8 +56,8 @@ const Nav = () => {
                 Login
               </NavLink>
             </li>
-          )}
-        </ul>
+          </ul>
+        )}
       </div>
     </nav>
   );
