@@ -6,7 +6,7 @@ import { api, csrfCookie } from "../api/config";
 const Login = () => {
   axios.defaults.withCredentials = true;
   const [formPassword, setFormPassword] = useState(true);
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     axios.get(csrfCookie).then((res) => {
@@ -34,6 +34,7 @@ const Login = () => {
                     name="email"
                     ref={register}
                     placeholder="Email"
+                    autoComplete="none"
                   />
                 </div>
                 <div className="form-group">
@@ -43,6 +44,7 @@ const Login = () => {
                     name="password"
                     ref={register}
                     placeholder="Password"
+                    autoComplete="none"
                   />
                   <small
                     className="float-right text-muted"
