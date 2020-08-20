@@ -23,13 +23,14 @@ const Home = () => {
     });
   };
   return (
-    <div>
+    <div className="container my-3">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, unde!
       Dolores ullam est voluptatibus aut ipsa repellendus doloremque delectus
       consequuntur commodi necessitatibus. Hic accusamus voluptatum, fugit nisi
       beatae unde reiciendis?
+      <hr />
       <p onClick={login}>Login</p>
-      <p onClick={check}>CHeck</p>
+      <p onClick={check}>Check</p>
     </div>
   );
 };
