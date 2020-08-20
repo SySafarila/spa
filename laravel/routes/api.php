@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,23 @@ Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        return response()->json(true);
+        return response()->json([
+            'login' => true
+        ]);
     } else {
-        return response()->json(false);
+        return response()->json([
+            'login' => false
+        ]);
     }
+});
+
+Route::post('/register', function (Request $request) {
+    User::create([
+        'name' => ucwords($request->name),
+        'email' => strtolower($request->email),
+        'password' => $request->password
+    ]);
+    return response()->json([
+        'register' => true
+    ]);
 });
