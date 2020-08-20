@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [collapse, setCollapse] = useState(false);
@@ -33,9 +33,9 @@ const Nav = () => {
         </ul>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link" to="/login">
+            <NavLink className="nav-link" to="/login" activeClassName="active">
               Login
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
